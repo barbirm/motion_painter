@@ -1,20 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+{% block content %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reviews</title>
-</head>
+<h1>Reviews</h1>
+{% for review in reviews %}
+{{ review.movie_name }}<br>
+{{ review.genre_name }}<br>
+{{ review.movie_description }}<br>
+{{ review.rating }}<br>
+{% endfor %}
 
-<body>
-    {% for review in reviews %}
-    {{ review.movie_name }}<br>
-    {{ review.genre_name }}<br>
-    {{ review.movie_description }}<br>
-    {{ review.rating }}<br>
-    {% endfor %}
-</body>
-
-</html>
+{% endblock %}
