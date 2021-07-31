@@ -30,13 +30,16 @@
                 </a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger left"><i class="fas fa-bars"></i></a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="{{ url_for('recommend') }}">Recommendations</a></li>
-                    <li><a href="{{ url_for('get_reviews') }}">Reviews</a></li>
+                    {% if session.user %}
                     <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+                    <li><a href="{{ url_for('get_reviews') }}">Reviews</a></li>
                     <li><a href="#">Add Review</a></li>
+                    <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+                    {% else %}
+                    <li><a href="{{ url_for('recommend') }}">Recommendations</a></li>
                     <li><a href="{{ url_for('login') }}">Log In</a></li>
-                    <li><a href="#">Log Out</a></li>
                     <li><a href="{{ url_for('register') }}">Register</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>
@@ -46,13 +49,16 @@
             <li>
                 <img src="{{ url_for('static', filename='images/side_motion.png') }}" alt="Motion Painter logo.">
             </li>
-            <li><a href="{{ url_for('recommend') }}">Recommendations</a></li>
-            <li><a href="{{ url_for('get_reviews') }}">Reviews</a></li>
+            {% if session.user %}
             <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+            <li><a href="{{ url_for('get_reviews') }}">Reviews</a></li>
             <li><a href="#">Add Review</a></li>
+            <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+            {% else %}
+            <li><a href="{{ url_for('recommend') }}">Recommendations</a></li>
             <li><a href="{{ url_for('login') }}">Log In</a></li>
-            <li><a href="#">Log Out</a></li>
             <li><a href="{{ url_for('register') }}">Register</a></li>
+            {% endif %}
         </ul>
     </header>
 
