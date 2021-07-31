@@ -93,7 +93,7 @@ def profile(username):
     if session["user"]:
         return render_template("profile.html", username=username)
 
-    return redirect(url_for("login"))
+    return redirect(url_for("profile"))
 
 
 @app.route("/logout")
@@ -143,6 +143,12 @@ def delete_review(review_id):
     mongo.db.reviews.remove({"_id": ObjectId(review_id)})
     flash("Review Successfully Deleted")
     return redirect(url_for("get_reviews"))
+
+
+@app.route("/bucketlist")
+def bucketlist():
+    bucketlist = list(mongo.db.bucketlist.find().sort("list_item", 1))
+    return render_template("bucketlist.html", bucketlist=bucketlist)
 
 
 if __name__ == "__main__":

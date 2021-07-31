@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 class="indigo-text lighten-1 center-align">Bucket List</h3>
+
+<div class="row">
+    {% for listitem in bucketlist %}
+    {% if session.user|lower == listitem.created_by|lower %}
+    <div class="col s12 m3">
+        <div class="card black darken-4 text-shadow center-align">
+            <div class="card-content white-text">
+                <span class="card-title">{{ listitem.list_item }}</span>
+            </div>
+            <div class="card-action">
+                <a href="#" class="btn indigo lighten-1">Edit</a>
+                <a href="#" class="btn red accent-2">Watched</a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+
+{% endblock %}
