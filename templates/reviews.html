@@ -1,12 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1>Reviews</h1>
-{% for review in reviews %}
-{{ review.movie_name }}<br>
-{{ review.genre_name }}<br>
-{{ review.movie_description }}<br>
-{{ review.rating }}<br>
-{% endfor %}
+<ul class="collapsible">
+    {% for review in reviews %}
+    <li>
+        <div class="collapsible-header white-text black text-shadow">
+            <i class="fas fa-caret-down"></i>
+            <strong>{{ review.movie_name }}</strong> : {{ review.genre_name }}
+        </div>
+        <div class="collapsible-body">
+            <strong>{{ review.genre_name }}</strong>
+            <p>{{ review.movie_description }}</p>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
 
 {% endblock %}
