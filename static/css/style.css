@@ -51,7 +51,19 @@
 
   /* -------------------------------------------------------------------*/
 
-  .collapsible li .userfloat p {
-    font: 80px;
-  }
+
+
+.btn-small {
+  margin: 5px;
+}
+
+.collapsible-header .col strong {
+  margin: 5px;
+  line-height: 42px;
+}
+
+.collapsible-header .col em {
+  padding-left: 100px;
+
+}
 

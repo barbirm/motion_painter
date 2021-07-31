@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 class="indigo-text lighten-1 center-align">Edit Review</h3>
+
+<div class="row card-panel grey lighten-5">
+    <form class="col s12" method="POST" action="{{ url_for('edit_review', review_id=review._id) }}">
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-ticket-alt prefix indigo-text lighten-1"></i>
+                <select id="genre_name" name="genre_name" class="validate" required>
+                    <option value="" disabled selected>Choose Genre</option>
+                    {% for genre in genres %}
+                    <option value="{{ genre.genre_name }}">{{ genre.genre_name }}</option>
+                    {% endfor %}
+                </select>
+                <label for="genre_name">Movie Genre</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-film prefix indigo-text lighten-1"></i>
+                <input id="movie_name" name="movie_name" minlength="1" maxlength="50" type="text" class="validate"
+                    required>
+                <label for="movie_name">Movie Name</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-align-left prefix indigo-text lighten-1"></i>
+                <textarea id="movie_description" name="movie_description" minlength="5" maxlength="3000"
+                    class="materialize-textarea validate" required></textarea>
+                <label for="movie_description">Your Critique</label>
+            </div>
+        </div>
+        <!--Submit-->
+        <div class="row">
+            <div class="col s12 center-align">
+                <button type="submit" class="btn-large indigo lighten-1 text-shadow">
+                    Edit Review <i class="fas fa-edit right"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+</form>
+</div>
+
+{% endblock %}
