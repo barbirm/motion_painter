@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
     {% block styles %}
     {% endblock %}
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/iconx.png') }}" type="image/x-icon">
     <title>Motion Painter</title>
 </head>
 
@@ -35,7 +36,7 @@
                     <li><a href="#">Add Review</a></li>
                     <li><a href="#">Log In</a></li>
                     <li><a href="#">Log Out</a></li>
-                    <li><a href="#">Register</a></li>
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
                 </ul>
             </div>
         </nav>
