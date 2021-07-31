@@ -5,31 +5,39 @@
 
 <div class="row card-panel grey lighten-5">
     <form class="col s12" method="POST" action="{{ url_for('edit_review', review_id=review._id) }}">
+        <!--Genre selection-->
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-ticket-alt prefix indigo-text lighten-1"></i>
                 <select id="genre_name" name="genre_name" class="validate" required>
-                    <option value="" disabled selected>Choose Genre</option>
+                    <option value="" disabled>Choose Genre</option>
                     {% for genre in genres %}
+                    {% if genre.genre_name == review.genre_name %}
+                    <option value="{{ genre.genre_name }}" selected>{{ genre.genre_name }}</option>
+                    {% else %}
                     <option value="{{ genre.genre_name }}">{{ genre.genre_name }}</option>
+                    {% endif %}
                     {% endfor %}
                 </select>
                 <label for="genre_name">Movie Genre</label>
             </div>
         </div>
+        <!--Movie name-->
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-film prefix indigo-text lighten-1"></i>
-                <input id="movie_name" name="movie_name" minlength="1" maxlength="50" type="text" class="validate"
-                    required>
+                <input id="movie_name" name="movie_name" minlength="1" maxlength="50" value="{{ review.movie_name }}"
+                    type="text" class="validate" required>
                 <label for="movie_name">Movie Name</label>
             </div>
         </div>
+        <!--Movie review-->
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-align-left prefix indigo-text lighten-1"></i>
                 <textarea id="movie_description" name="movie_description" minlength="5" maxlength="3000"
-                    class="materialize-textarea validate" required></textarea>
+                    class="materialize-textarea validate" required>
+                    {{- review.movie_description -}}</textarea>
                 <label for="movie_description">Your Critique</label>
             </div>
         </div>
@@ -39,6 +47,10 @@
                 <button type="submit" class="btn-large indigo lighten-1 text-shadow">
                     Edit Review <i class="fas fa-edit right"></i>
                 </button>
+                <!-- cancel button -->
+                <a href="{{ url_for('get_reviews') }}" class="btn-large red accent-2 text-shadow">
+                    Cancel <i class="fas fa-times-circle right"></i>
+                </a>
             </div>
         </div>
     </form>
