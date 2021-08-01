@@ -151,6 +151,22 @@ def bucketlist():
     return render_template("bucketlist.html", bucketlist=bucketlist)
 
 
+@app.route("/add_bucketitem", methods=["GET", "POST"])
+def add_bucketitem():
+    if request.method == "POST":
+        bucketitem = {
+            "genre_name": request.form.get("genre_name"),
+            "list_item": request.form.get("list_item"),
+            "created_by": session["user"]
+        }
+        mongo.db.bucketlist.insert_one(bucketitem)
+        flash("Movie Added To Your Bucket List")
+        return redirect(url_for("bucketlist"))
+
+    genres = mongo.db.genres.find().sort("genre_name", 1)
+    return render_template("add_bucketitem.html", genres=genres)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),

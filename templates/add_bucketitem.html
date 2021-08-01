@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h3 class="indigo-text lighten-1 center-align">Add Review</h3>
+<h3 class="light-blue-text text-darken-4 center-align">Add Movie To Your Bucket List</h3>
 
 <div class="row card-panel grey lighten-5">
-    <form class="col s12" method="POST" action="{{ url_for('add_review') }}">
+    <form class="col s12" method="POST" action="{{ url_for('add_bucketitem') }}">
         <!--Genre selection-->
         <div class="row">
             <div class="input-field col s12">
@@ -18,36 +18,24 @@
                 <label for="genre_name">Movie Genre</label>
             </div>
         </div>
-        <!--Movie name-->
+        <!--Bucket list movie name-->
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-film prefix indigo-text lighten-1"></i>
-                <input id="movie_name" name="movie_name" minlength="1" maxlength="50" type="text" class="validate"
+                <input id="list_item" name="list_item" minlength="1" maxlength="20" type="text" class="validate"
                     required>
-                <label for="movie_name">Movie Name</label>
+                <label for="list_item">Movie Name</label>
             </div>
         </div>
-        <!--Movie critique-->
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="fas fa-align-left prefix indigo-text lighten-1"></i>
-                <textarea id="movie_description" name="movie_description" minlength="5" maxlength="3000"
-                    class="materialize-textarea validate" required></textarea>
-                <label for="movie_description">Your Critique</label>
-            </div>
-        </div>
-        <!--Submit-->
+        <!--Submit -->
         <div class="row">
             <div class="col s12 center-align">
-                <button type="submit" class="btn-large indigo lighten-1 text-shadow">
-                    Add Review <i class="fas fa-file-import right"></i>
+                <button type="submit" class="btn-large light-blue darken-1 text-shadow">
+                    Add Movie <i class="fas fa-plus-square right"></i>
                 </button>
             </div>
         </div>
     </form>
-</div>
-
-</form>
 </div>
 
 {% endblock %}

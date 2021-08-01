@@ -2,7 +2,6 @@
 {% block content %}
 
 <h3 class="indigo-text lighten-1 center-align">Bucket List</h3>
-
 <div class="row">
     {% for listitem in bucketlist %}
     {% if session.user|lower == listitem.created_by|lower %}
@@ -20,5 +19,4 @@
     {% endif %}
     {% endfor %}
 </div>
-
 {% endblock %}
