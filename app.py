@@ -24,11 +24,6 @@ def home():
     return render_template("index.html")
 
 
-@app.route("/recommend")
-def recommend():
-    return render_template("recommendations.html")
-
-
 @app.route("/get_reviews")
 def get_reviews():
     reviews = mongo.db.reviews.find()
@@ -71,7 +66,7 @@ def login():
                     existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
                 flash("Welcome, {}".format(request.form.get("username")))
-                return redirect(url_for("get_bucketlists"))
+                return redirect(url_for("get_reviews"))
             else:
                 # Invalid password match
                 flash("Incorrect Username and/or Password")
@@ -90,11 +85,6 @@ def profile(username):
     # Takes the session user's username from database
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-
-    if session["user"]:
-        return render_template("profile.html", username=username)
-
-    return redirect(url_for("profile"))
 
 
 @app.route("/logout")
@@ -129,6 +119,7 @@ def edit_review(review_id):
     if request.method == "POST":
         submit = {
             "genre_name": request.form.get("genre_name"),
+            "grade_name": request.form.get("grade_name"),
             "movie_name": request.form.get("movie_name"),
             "movie_description": request.form.get("movie_description"),
             "created_by": session["user"]
@@ -139,7 +130,8 @@ def edit_review(review_id):
 
     review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
     genres = mongo.db.genres.find().sort("genre_name", 1)
-    return render_template("edit_review.html", review=review,  genres=genres)
+    grades = mongo.db.grades.find().sort("grade_name", 1)
+    return render_template("edit_review.html", review=review,  genres=genres, grades=grades)
 
 
 @app.route("/delete_review/<review_id>")
@@ -193,4 +185,4 @@ def delete_bucketlist(bucketlist_id):
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=True)
+            debug=False)

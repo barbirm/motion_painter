@@ -39,6 +39,27 @@ body {
 main {
   flex: 1 0 auto;
 }
+
+.btn-small {
+  margin: 5px;
+}
+
+.collapsible-header .col strong {
+  margin: 5px;
+  line-height: 42px;
+}
+
+.collapsible-header .col em {
+  padding-left: 100px;
+
+}
+
+
+.parallax img{
+ height: 100%;
+ width: 200%;
+}
+
    
 /* Registration flash message fade effect --------------------------------- */
 
@@ -77,24 +98,3 @@ main {
 
   /* -------------------------------------------------------------------*/
 
-
-
-.btn-small {
-  margin: 5px;
-}
-
-.collapsible-header .col strong {
-  margin: 5px;
-  line-height: 42px;
-}
-
-.collapsible-header .col em {
-  padding-left: 100px;
-
-}
-
-
-.parallax img{
- height: 100%;
- width: 200%;
-}
