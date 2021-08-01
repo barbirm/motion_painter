@@ -71,6 +71,7 @@ def login():
                     existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
                 flash("Welcome, {}".format(request.form.get("username")))
+                return redirect(url_for("get_bucketlists"))
             else:
                 # Invalid password match
                 flash("Incorrect Username and/or Password")
@@ -132,6 +133,7 @@ def edit_review(review_id):
         }
         mongo.db.reviews.update({"_id": ObjectId(review_id)}, submit)
         flash("Review Updated Successfully")
+        return redirect(url_for("get_reviews"))
 
     review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
     genres = mongo.db.genres.find().sort("genre_name", 1)
@@ -145,26 +147,45 @@ def delete_review(review_id):
     return redirect(url_for("get_reviews"))
 
 
-@app.route("/bucketlist")
-def bucketlist():
-    bucketlist = list(mongo.db.bucketlist.find().sort("list_item", 1))
-    return render_template("bucketlist.html", bucketlist=bucketlist)
+@app.route("/get_bucketlists")
+def get_bucketlists():
+    bucketlists = list(mongo.db.bucketlists.find().sort("bucketlist_name", 1))
+    return render_template("bucketlists.html", bucketlists=bucketlists)
 
 
-@app.route("/add_bucketitem", methods=["GET", "POST"])
-def add_bucketitem():
+@app.route("/add_bucketlist", methods=["GET", "POST"])
+def add_bucketlist():
     if request.method == "POST":
-        bucketitem = {
-            "genre_name": request.form.get("genre_name"),
-            "list_item": request.form.get("list_item"),
-            "created_by": session["user"]
+        bucketlist = {
+            "bucketlist_name": request.form.get("bucketlist_name")
         }
-        mongo.db.bucketlist.insert_one(bucketitem)
-        flash("Movie Added To Your Bucket List")
-        return redirect(url_for("bucketlist"))
+        mongo.db.bucketlists.insert_one(bucketlist)
+        flash("New Movie Added To Bucket List")
+        return redirect(url_for("get_bucketlists"))
 
-    genres = mongo.db.genres.find().sort("genre_name", 1)
-    return render_template("add_bucketitem.html", genres=genres)
+    return render_template("add_bucketlist.html")
+
+
+@app.route("/edit_bucketlist/<bucketlist_id>", methods=["GET", "POST"])
+def edit_bucketlist(bucketlist_id):
+    if request.method == "POST":
+        submit = {
+            "bucketlist_name": request.form.get("bucketlist_name")
+        }
+        mongo.db.bucketlists.update({"_id": ObjectId(bucketlist_id)}, submit)
+        flash("List Item Successfully Updated")
+        return redirect(url_for("get_bucketlists"))
+
+    bucketlist = mongo.db.bucketlists.find_one(
+        {"_id": ObjectId(bucketlist_id)})
+    return render_template("edit_bucketlist.html", bucketlist=bucketlist)
+
+
+@app.route("/delete_bucketlist/<bucketlist_id>")
+def delete_bucketlist(bucketlist_id):
+    mongo.db.bucketlists.remove({"_id": ObjectId(bucketlist_id)})
+    flash("List Item Successfully Deleted")
+    return redirect(url_for("get_bucketlists"))
 
 
 if __name__ == "__main__":

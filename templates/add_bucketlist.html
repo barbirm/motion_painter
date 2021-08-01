@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 class="center-align">Add Movie To Bucketlist</h3>
+
+<div class="row card-panel grey lighten-5">
+    <form class="col s12" method="POST" action="{{ url_for('add_bucketlist') }}">
+        <!-- category name -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-film prefix indigo-text lighten-1"></i>
+                <input id="bucketlist_name" name="bucketlist_name" minlength="3" maxlength="60" type="text"
+                    class="validate" required>
+                <label for="bucketlist_name">Movie Name</label>
+            </div>
+        </div>
+        <!-- submit button -->
+        <div class="row">
+            <div class="col s12 center-align">
+                <button type="submit" class="btn-large indigo lighten-1 text-shadow">
+                    Add Movie <i class="fas fa-plus-square right"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

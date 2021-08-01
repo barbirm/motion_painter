@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 class="center-align">Edit Movie Information</h3>
+
+<div class="row card-panel grey lighten-5">
+    <form class="col s12" method="POST" action="{{ url_for('edit_bucketlist', bucketlist_id=bucketlist._id) }}">
+        <!-- category name -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-film prefix indigo-text lighten-1"></i>
+                <input id="bucketlist_name" name="bucketlist_name" minlength="3" maxlength="25" type="text"
+                    value="{{ bucketlist.bucketlist_name }}" class="validate" required>
+                <label for="bucketlist_name">Movie Name</label>
+            </div>
+        </div>
+        <!-- submit button -->
+        <div class="row">
+            <div class="col s12 center-align">
+                <button type="submit" class="btn-large indigo lighten-1 text-shadow">
+                    Edit Info <i class="fas fa-edit right"></i>
+                </button>
+                <a href="{{ url_for('get_bucketlists') }}" class="btn-large red accent-2 text-shadow">
+                    Go Back <i class="fas fa-long-arrow-alt-left right"></i>
+                </a>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

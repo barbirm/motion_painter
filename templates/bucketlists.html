@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 class="center-align">Your Bucket List</h3>
+
+<div class="row">
+    <div class="col s12 center-align">
+        <a href="{{ url_for('add_bucketlist') }}" class="btn-large indigo lighten-1 text-shadow">
+            Add Movie <i class="fas fa-plus-square right"></i>
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    {% for bucketlist in bucketlists %}
+    <div class="col s12 m3">
+        <div class="card black darken-4 text-shadow center-align">
+            <div class="card-content white-text">
+                <span class="card-title">{{ bucketlist.bucketlist_name }}</span>
+            </div>
+            <div class="card-action">
+                <a href="{{ url_for('edit_bucketlist', bucketlist_id=bucketlist._id) }}"
+                    class="btn indigo lighten-1">Edit</a>
+                <a href="{{ url_for('delete_bucketlist', bucketlist_id=bucketlist._id) }}"
+                    class="btn red accent-2">Delete</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
