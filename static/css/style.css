@@ -1,3 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+
+h1, h3 {
+  font-family: 'Fredoka One', cursive;
+}
+
+h4 {
+  font-family: 'Ubuntu', sans-serif;
+}
+
 
 .brand-logo img {
     height: 60px;
@@ -14,6 +25,21 @@
 .text-shadow {
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
+
+.footer-copyright .container {
+  font-size: 30px;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+   
 /* Registration flash message fade effect --------------------------------- */
 
 .flash-message {
@@ -67,3 +93,8 @@
 
 }
 
+
+.parallax img{
+ height: 100%;
+ width: 200%;
+}

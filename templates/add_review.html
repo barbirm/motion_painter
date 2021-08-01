@@ -18,6 +18,19 @@
                 <label for="genre_name">Movie Genre</label>
             </div>
         </div>
+        <!--Grade selection-->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-ticket-alt prefix indigo-text lighten-1"></i>
+                <select id="grade_name" name="grade_name" class="validate" required>
+                    <option value="" disabled selected>Rate The Movie</option>
+                    {% for grade in grades %}
+                    <option value="{{ grade.grade_name }}">{{ grade.grade_name }}</option>
+                    {% endfor %}
+                </select>
+                <label for="grade_name">Grade</label>
+            </div>
+        </div>
         <!--Movie name-->
         <div class="row">
             <div class="input-field col s12">

@@ -31,7 +31,6 @@
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger left"><i class="fas fa-bars"></i></a>
                 <ul class="right hide-on-med-and-down">
                     {% if session.user %}
-                    <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
                     <li><a href="{{ url_for('get_reviews') }}">Reviews</a></li>
                     <li><a href="{{ url_for('add_review') }}">Add Review</a></li>
                     <li><a href="{{ url_for('add_bucketlist') }}">Update Bucket List</a></li>
@@ -72,7 +71,7 @@
         {% if messages %}
         {% for message in messages %}
         <div class="row flash-message">
-            <h4 class="center-align indigo-text lighten-1">{{ message }}</h4>
+            <h4 class="center-align red-text accent-2">{{ message }}</h4>
         </div>
         {% endfor %}
         {% endif %}
@@ -83,6 +82,14 @@
         {% block content %}
         {% endblock %}
     </main>
+
+    <div class="footer-copyright grey darken-3 white-text center-align">
+        <div class="container">
+            © 2021 Motion Painter
+
+        </div>
+    </div>
+    </footer>
 
 
     <!--jQuery and Materialize JS-->

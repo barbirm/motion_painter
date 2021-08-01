@@ -110,6 +110,7 @@ def add_review():
     if request.method == "POST":
         review = {
             "genre_name": request.form.get("genre_name"),
+            "grade_name": request.form.get("grade_name"),
             "movie_name": request.form.get("movie_name"),
             "movie_description": request.form.get("movie_description"),
             "created_by": session["user"]
@@ -119,7 +120,8 @@ def add_review():
         return redirect(url_for("get_reviews"))
 
     genres = mongo.db.genres.find().sort("genre_name", 1)
-    return render_template("add_review.html", genres=genres)
+    grades = mongo.db.grades.find().sort("grade_name", 1)
+    return render_template("add_review.html", genres=genres, grades=grades)
 
 
 @app.route("/edit_review/<review_id>", methods=["GET", "POST"])
